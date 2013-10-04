@@ -1,117 +1,24 @@
 <html>
-	<head>
-		<meta name="viewport" content="user-scalable=no,width=device-width" />
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		<script src="jquery.ui.touch-punch.min.js"></script>
-	</head>
-	<body>
-		<style>
-		
-			.draggable-object{
-				position: fixed;
-				z-index: 9999;
-			}
-			
-			.drag-border{
-				-webkit-transition: 0.6s ease-out;
-				
-			}
-			
-			.soundcloud-frame {
-				position: fixed;
-				left: 5px;
-				top: 80px;
-				width: 100%;
-				max-width: 465px;
-				z-index: 9999;
-				display: none;
-			}
-			
-			.soundcloud-frame.open {
-				display: block;
-			}
-			
-			
-			
-		</style>
-		
-		<div class="draggable draggable-object drag-border"  style="left:20px;top:20px;">
-			<img  src="http://www.ondasonora.be/wp-content/uploads/2013/08/soundcloud.gif" alt="" />
-		</div>
-		
-		<iframe class="soundcloud-frame" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/users/2171326/favorites&show_comments=false" width="465" height="300" scrolling="no" frameborder="no"></iframe>
-		
-		<script>
-		
-		$(function() {
-			    $( ".draggable" ).draggable({ scroll: false });
-		});
-		
-		function countime(){
-			measure++;
-		}
-		
-		function tooglesoundcloud( e ){
-			window.clearInterval(myInterval);
-			if( measure < 3 ){
-				//$( 'p' ).append( "<span style='color:#0f0;'>Mouse click.</span>" );
-				if( $('.draggable').hasClass('open') ){
-					$('.draggable').removeClass('open');
-					$('.soundcloud-frame').removeClass('open');
-					$( ".draggable" ).draggable({ disabled: false, scroll: false});
-					
-					$('.soundcloud-frame')
-						.contents()
-						.find('header')
-						.append('<style></style>')
-						.children('style')	
-						.append('.multiSounds__details{ display:none; }')		
-					
-					
-				}else{
-					$('.draggable').addClass('open');
-					$('.soundcloud-frame').addClass('open');
-					$( ".draggable" ).draggable({ disabled: true});
-				}
-			}else{
-				$( ".draggable" ).draggable({ disabled: false, scroll: false});
-			}
-			
-			
-		}
-		
-		var myInterval = 0;
-		var measure = 0;
-		
-		function goback( e ) {
-		    
-		    $(document).unbind('mouseup', goback );
-		    //$( 'p' ).append( "<span style='color:#f00;'>Mouse up.</span>" );
-		    $('.draggable').addClass('drag-border');
-		    
-		    $('.draggable').css({
-			    left: 20,
-			    top: 20
-			});  
-		}
-				
-		$( '.draggable' )
-		  .click( tooglesoundcloud )	
-		  .mousedown(function() {
-		    measure = 0;
-		    myInterval = setInterval( countime , 100);
-		    
-		    //$( 'p' ).append( "<span style='color:#00f;'>Mouse down.</span>" );
-		    $('.draggable').removeClass('drag-border');
-		    $('.draggable').css({
-			    left: 20,
-			    top: 20
-			});
-		    $(document).bind('mouseup', goback );
-		    
-		  });
-		</script>
-		
-	</body>
+    <head>
+
+        <meta name="viewport" content="user-scalable=no,width=device-width" />
+
+        <link rel="stylesheet" href="css/custom.css">
+
+        
+    </head>
+    <body>
+        
+        
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+        <script src="js/vendors/furf/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/vendors/awallef/jquery.sc.draggable-widget.js"></script>
+        <script>
+            $( document ).ready(function(){
+                $.fn.scDarggableWidget({});
+            });
+        </script>
+    </body>
 </html>

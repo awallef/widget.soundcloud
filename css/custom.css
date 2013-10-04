@@ -1,0 +1,22 @@
+.sc-open-bt{
+    position: fixed;
+    z-index: 9999;
+}
+
+.sc-transition{
+    -webkit-transition: 0.6s ease-out;
+    -moz-transition: 0.6s ease-out;
+    -o-transition: 0.6s ease-out;
+    -ms-transition: 0.6s ease-out;
+    transition: 0.6s ease-out;
+}
+
+.sc-frame {
+    position: fixed;
+    z-index: 9999;
+    display: none;
+}
+
+.sc-frame.sc-open {
+    display: block;
+}
